@@ -9,6 +9,9 @@
 
 (defrecord Node [label children])
 
+(defn node [label children]
+  (Node. label children))
+
 ; Searches --------------------------------------------------------------------
 (defn- search [frontier-conj tree goal]
   ; frontier is a sequence of vectors representing paths we still need to try:
@@ -35,13 +38,16 @@
 (def search-depth (partial search frontier-conj-depth))
 (def search-breadth (partial search frontier-conj-breadth))
 
-; Sample Tree -----------------------------------------------------------------
-;
-;     a
-;  b     c
-; d e   f g
+; Sample Trees ----------------------------------------------------------------
 
-(def sample-tree (Node. :a [(Node. :b [(Node. :d [])
-                                       (Node. :e [])])
-                            (Node. :c [(Node. :f [])
-                                       (Node. :g [])])]))
+(def sample-tree-1 (Node. :a [(node :b [(node :d [])
+                                        (node :e [])])
+                              (node :c [(node :f [])
+                                        (node :g [])])]))
+
+(def sample-tree-2 (node :a [(node :b [(node :d [])
+                                       (node :e [])])
+                             (node :q [])
+                             (node :c [(node :f [(node :x [])
+                                                 (node :y [(node :z [])])])
+                                       (node :g [])])]))
