@@ -19,4 +19,4 @@ Usage
 
     (require '[unit02.viz :as viz])
     (viz/view-tree trees/sample-tree-1)
-    (viz/view-tree viz/sample-tree-2)
+    (viz/view-tree trees/sample-tree-2)
