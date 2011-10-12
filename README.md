@@ -11,8 +11,9 @@ Implementations of any algorithms learned in the course can be developed in any 
 Current available languages
 -----------------------------
 
-* Python
+* Clojure
 * JavaScript
+* Python
 
 How to use
 -----------

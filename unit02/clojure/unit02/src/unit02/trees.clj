@@ -40,10 +40,10 @@
 
 ; Sample Trees ----------------------------------------------------------------
 
-(def sample-tree-1 (Node. :a [(node :b [(node :d [])
-                                        (node :e [])])
-                              (node :c [(node :f [])
-                                        (node :g [])])]))
+(def sample-tree-1 (node :a [(node :b [(node :d [])
+                                       (node :e [])])
+                             (node :c [(node :f [])
+                                       (node :g [])])]))
 
 (def sample-tree-2 (node :a [(node :b [(node :d [])
                                        (node :e [])])

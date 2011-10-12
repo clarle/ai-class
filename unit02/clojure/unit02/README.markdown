@@ -5,6 +5,8 @@ Usage
 -----
 
     lein deps
+    lein test
+
     lein repl
 
     (require '[unit02.trees :as trees])
