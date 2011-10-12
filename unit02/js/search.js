@@ -1,7 +1,7 @@
 // To implement:
 // BFS, DFS, UCS, A*
 
-function tree_search(graph, source, dest, frontier) {
+function tree_search(tree, source, dest, frontier) {
     frontier.push(source);
     var node;
     while (!frontier.empty()) {
@@ -9,7 +9,7 @@ function tree_search(graph, source, dest, frontier) {
         if (node == dest) {
             return node;
         }
-        frontier.expand(graph[node]);
+        frontier.expand(tree[node]);
     return null;
 }
 
@@ -34,16 +34,29 @@ function graph_search(graph, source, dest, frontier) {
     return null;     
 }
 
-function bf_search(graph, source, dest) {
-
+function bf_tree_search(tree, source, dest) {
+    var queue = new Queue();
+    return tree_search(tree, source, dest, queue);
 }
 
-function df_search(graph, source, dest) {
-
+function df_tree_search(tree, source, dest) {
+    var stack = new Stack();
+    return tree_search(tree, source, dest, stack);
 }
 
-function uc_search(graph, source, dest) {
+function bf_graph_search(graph, source, dest) {
+    var queue = new Queue();
+    return graph_search(graph, source, dest, queue);
+}
 
+function df_graph_search(graph, source, dest) {
+    var stack = new Stack();
+    return graph_search(graph, source, dest, stack);
+}
+
+function uc_graph_search(graph, source, dest) {
+    var p_queue = new PriorityQueue();
+    return graph_search(graph, source, dest, p_queue);
 }
 
 function a_star(graph, source, dest) {
