@@ -51,3 +51,12 @@
                              (node :c [(node :f [(node :x [])
                                                  (node :y [(node :z [])])])
                                        (node :g [])])]))
+
+(def sample-tree-3 (node :a [(node :b [(node :d [(node :i [])
+                                                 (node :j [])])
+                                       (node :e [])])
+                             (node :q [(node :l [(node :n [(node :o [(node :p [])])])])
+                                       (node :m [(node :q [])])])
+                             (node :c [(node :f [(node :x [])
+                                                 (node :y [(node :z [])])])
+                                       (node :g [])])]))
