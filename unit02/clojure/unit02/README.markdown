@@ -20,5 +20,9 @@ Usage
     (graphs/search-depth graphs/sample-graph-ny :rochester :albany)
 
     (require '[unit02.viz :as viz])
-    (viz/view-tree trees/sample-tree-1)
-    (viz/view-tree trees/sample-tree-2)
+
+    (viz/search-tree trees/sample-tree-1 trees/search-depth :e)
+    (viz/search-tree trees/sample-tree-1 trees/search-breadth :e)
+
+    (viz/search-tree trees/sample-tree-3 trees/search-depth :n)
+    (viz/search-tree trees/sample-tree-3 trees/search-breadth :n)
