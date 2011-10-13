@@ -13,19 +13,27 @@
   (Node. label children))
 
 ; Searches --------------------------------------------------------------------
-(defn- search [frontier-conj tree goal]
-  ; frontier is a sequence of vectors representing paths we still need to try:
-  ; ([Node :a, Node :b], [Node :a, Node :c], ...)
-  (loop [frontier (seq [[tree]])
-         examined 1]
-    (let [path (first frontier)
-          current (last path)]
-      (if (= (:label current) goal)
-        {:path (map :label path)
-         :examined examined}
-        (recur (frontier-conj (rest frontier)
-                              (map #(conj path %) (:children current)))
-               (inc examined))))))
+(defn- log [log-ref label data]
+  (when log-ref
+    (dosync (alter log-ref conj [label data]))))
+
+(defn- search 
+  ([frontier-conj tree goal] (search frontier-conj tree goal nil))
+  ([frontier-conj tree goal log-ref] 
+   ; frontier is a sequence of vectors representing paths we still need to try:
+   ; ([Node :a, Node :b], [Node :a, Node :c], ...)
+   (loop [frontier (seq [[tree]])
+          examined 1]
+     (log log-ref :frontier (vec (map (comp :label last) frontier)))
+     (let [path (first frontier)
+           current (last path)]
+       (log log-ref :examine current)
+       (if (= (:label current) goal)
+         {:path (map :label path)
+          :examined examined}
+         (recur (frontier-conj (rest frontier)
+                               (map #(conj path %) (:children current)))
+                (inc examined)))))))
 
 
 (defn- frontier-conj-depth [frontier children]
@@ -48,6 +56,15 @@
 (def sample-tree-2 (node :a [(node :b [(node :d [])
                                        (node :e [])])
                              (node :q [])
+                             (node :c [(node :f [(node :x [])
+                                                 (node :y [(node :z [])])])
+                                       (node :g [])])]))
+
+(def sample-tree-3 (node :a [(node :b [(node :d [(node :i [])
+                                                 (node :j [])])
+                                       (node :e [])])
+                             (node :q [(node :l [(node :n [(node :o [(node :p [])])])])
+                                       (node :m [(node :r [])])])
                              (node :c [(node :f [(node :x [])
                                                  (node :y [(node :z [])])])
                                        (node :g [])])]))
