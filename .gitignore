@@ -7,6 +7,7 @@
 *.o
 *.so
 *.pyc
+a.out
 
 # Packages #
 ############
@@ -33,3 +34,8 @@
 ehthumbs.db
 Icon?
 Thumbs.db
+
+# Editor generated files #
+##########################
+*.swp
+*~
