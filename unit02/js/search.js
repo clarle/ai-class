@@ -10,6 +10,7 @@ function tree_search(tree, source, dest, frontier) {
             return node;
         }
         frontier.expand(tree[node]);
+    }
     return null;
 }
 
@@ -19,6 +20,7 @@ function graph_search(graph, source, dest, frontier) {
     var node;
     while (!frontier.empty()) {
         node = frontier.pop();
+        console.log(node);
         if (node == dest) {
             return node;
         }
